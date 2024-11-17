@@ -8,9 +8,15 @@ import (
 	"notification-service/helpers"
 
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load("./../.env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	consumer, err := kafka.NewConsumer(config.KafkaConfig())
 	if err != nil {
 		panic(err)
