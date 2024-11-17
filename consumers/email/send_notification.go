@@ -14,7 +14,7 @@ func SendNotification(messageBody *helpers.MessageBody) error {
 	mailer := gomail.NewMessage()
 	mailer.SetHeader("From", config.EmailFrom)
 	mailer.SetHeader("To", messageBody.SendTo)
-	mailer.SetHeader("Subject", "Success")
+	mailer.SetHeader("Subject", messageBody.Subject)
 	mailer.SetBody("text/plain", messageBody.Message)
 
 	dialer := gomail.NewDialer(config.Server, config.Port, config.Username, config.Password)
